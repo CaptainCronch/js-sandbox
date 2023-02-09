@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Business</title>
+    <style>
+        td { 
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            border: 3px dashed black;
+            margin: 0;
+            border-collapse: collapse;
+            font-size: 3em;
+            text-align: center;
+            cursor: context-menu;
+            user-select: none;
+        }
+        table, tr {
+            margin: 0;
+            padding: 0;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body style="background-color: darkgray;">
+
+    <div id="calendar" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
+        <h1 id="calendar-title" style="font-size:5em;"></h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>click on today's date to waste electricity and time</h1>
+    </div>
+    <form action="#" onsubmit="onClick();return false">
+        <input type="time" name="time" id="time">
+        <input type="submit" value="submit" id="submit">
+    </form>
+    <h1 id="result">time</h1>
+    <h1 id="current">this is the current time</h1>
+    <img src="https://i.pinimg.com/originals/9f/9f/84/9f9f84cf1661937bb8cfcfee04dcef67.png" alt="zelda spritesheet" style="object-fit: none; object-position: 0% 0%; width: 100px; height: 150px;">
+    <video src="catmeowslikeaperson.mp4" type="video/mp4" controls></video>
+    <audio src="Monky Disco.mp3" type="audio/mp3" controls></audio>
+    <canvas id="my-canvas" style="border: 3px solid black"></canvas>
+    <svg width="100" height="100">
+        <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+    </svg>
+
+    <script>
+        let my_canvas = document.getElementById("my-canvas");
+        let ctx = my_canvas.getContext("2d");
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+        ctx.lineTo(300, 50);
+        ctx.stroke();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+    <script src="script.js"><reference path="./jquery-3.6.3.slim.js" /></script>
+</body>
+</html>
