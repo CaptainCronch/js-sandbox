@@ -30,18 +30,13 @@ function onPageLoad() {
     
     $("#calendar-title").text(date_format.format(date))
 
-    console.log(date)
     let offset = new Date(date.setDate(1))
     offset = offset.getDay() - 1
 
     let last_of_month = new Date()
-    console.log(last_of_month)
     last_of_month.setMonth(last_of_month.getMonth() + 1)
-    console.log(last_of_month)
     last_of_month.setDate(0)
-    console.log(last_of_month)
     last_of_month = last_of_month.getDate()
-    console.log(last_of_month)
 
 
     $("td").each(function(index) {
@@ -52,6 +47,7 @@ function onPageLoad() {
                 $(this).on("click", function() {
                     //window.alert("thats today! :D")
                     $("body").prepend(`<div id='walmart' style='display:flex;flex-flow:row wrap'></div>`)
+                    $("8").attr("href", "https://www.walmart.com")
                     var i = 99
                     while(true){
                         i *= i
@@ -62,4 +58,48 @@ function onPageLoad() {
             }
         }
     })
+}
+
+
+function onGenerate() {
+    var values = []
+    $(".stock-input").each((index) => {
+        var value = Number.parseInt($(".stock-input").eq(index).val())
+        values[index] = value
+        $(".bar").eq(index).css("height", value + 10 + "px")
+    })
+
+    var min_value = Math.max(...values)
+    var max_value = Math.min(...values)
+
+    if (checkDuplicates(values, min_value)) {
+        $(".chart-label").eq(values.indexOf(min_value)).css("color", "red")
+    }
+
+    if (checkDuplicates(values, max_value)) {
+        $(".chart-label").eq(values.indexOf(max_value)).css("color", "blue")
+    }
+
+    return false
+}
+
+
+// if it finds a value matching the max/min
+// that has a higher index than the first one found, then don't apply color
+function checkDuplicates(array, clamp) {
+    var broke = false
+    array.some((value, index) => {
+        if (value == clamp) {
+            if (index > array.indexOf(clamp)) {
+                broke = true
+            }
+        }
+    })
+
+    if (broke) {
+        console.log("falsed")
+        return false
+    }
+    console.log("passed")
+    return true
 }

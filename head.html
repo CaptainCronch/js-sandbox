@@ -4,22 +4,64 @@
     <meta charset="UTF-8">
     <title>My Business</title>
     <style>
+        * {
+            user-select: none;
+            background: rgb(106,79,40);
+background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%, rgba(31,255,0,1) 100%);
+        }
         td { 
             width: 20px;
             height: 20px;
             padding: 10px;
-            border: 3px dashed black;
+            border: 5px groove white;
+            border-style: inset;
             margin: 0;
             border-collapse: collapse;
             font-size: 3em;
             text-align: center;
             cursor: context-menu;
-            user-select: none;
         }
         table, tr {
             margin: 0;
             padding: 0;
             border-collapse: collapse;
+        }
+        table {
+            box-shadow: 0px 0px 5px 20px white,
+                    0px 0px 10px 25px lightgray,
+                    0px 0px 15px 30px gray,
+                    0px 0px 20px 35px black
+            ;
+            
+        }
+        th, .chart-label {
+            font-family: monospace;
+            font-size: 2em;
+            font-weight: 100;
+        }
+        input[type='number'] {
+            width: 50px;
+            height: 50px;
+            font-size: 2em;
+        }
+        #stock-submit {
+            height: 55px;
+            vertical-align: top;
+            font-size: 2em;
+            font-weight: 800;
+        }
+        #chart, #chart-labels {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 20px 100px;
+        }
+        .bar {
+            background-color: greenyellow;
+            width: 50px;
+            height: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -28,6 +70,17 @@
     <div id="calendar" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
         <h1 id="calendar-title" style="font-size:5em;"></h1>
         <table>
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
                     <td></td>
@@ -78,6 +131,36 @@
         </table>
         <h1>click on today's date to waste electricity and time</h1>
     </div>
+    <form action="#" id="stock-market" onsubmit="onGenerate();return false">
+        <input type="number" name="sunday" id="sunday" class="stock-input">
+        <input type="number" name="monday" id="monday" class="stock-input">
+        <input type="number" name="tuesday" id="tuesday" class="stock-input">
+        <input type="number" name="wednesday" id="wednesday" class="stock-input">
+        <input type="number" name="thursday" id="thursday" class="stock-input">
+        <input type="number" name="friday" id="friday" class="stock-input">
+        <input type="number" name="saturday" id="saturday" class="stock-input">
+        <input type="submit" value="GENERATE!!!" id="stock-submit">
+    </form>
+    <h1>stock market :o</h1>
+    <div id="chart">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div id="chart-labels">
+        <h3 class="chart-label">Sun</h3>
+        <h3 class="chart-label">Mon</h3>
+        <h3 class="chart-label">Tue</h3>
+        <h3 class="chart-label">Wed</h3>
+        <h3 class="chart-label">Thu</h3>
+        <h3 class="chart-label">Fri</h3>
+        <h3 class="chart-label">Sat</h3>
+    </div>
+    <h1>Blue is best day to buy, red is best day to sell</h1>
     <form action="#" onsubmit="onClick();return false">
         <input type="time" name="time" id="time">
         <input type="submit" value="submit" id="submit">
@@ -101,7 +184,6 @@
         ctx.lineTo(300, 50);
         ctx.stroke();
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-    <script src="script.js"><reference path="./jquery-3.6.3.slim.js" /></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>    <script src="script.js"></script>
 </body>
 </html>
