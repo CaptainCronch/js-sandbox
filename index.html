@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <title>My Business</title>
     <style>
-        * {
+        /* * {
             user-select: none;
             background: rgb(106,79,40);
 background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%, rgba(31,255,0,1) 100%);
-        }
+        } */
         td { 
             width: 20px;
             height: 20px;
             padding: 10px;
             border: 5px groove white;
-            border-style: inset;
             margin: 0;
             border-collapse: collapse;
             font-size: 3em;
             text-align: center;
-            cursor: context-menu;
+            cursor: crosshair;
         }
         table, tr {
             margin: 0;
@@ -62,6 +61,34 @@ background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%
             width: 50px;
             height: 10px;
             border-radius: 10px;
+        }
+        .comment h3 {
+            display: inline;
+            font-family: cursive;
+            font-weight: 800;
+            font-size: 2rem;
+            vertical-align: top;
+            text-align: left;
+        }
+        .comment {
+            padding: 20px;
+            text-align: right;
+        }
+        .comment p {
+            font-size: 2rem;
+            font-family:Impact, sans-serif;
+            text-shadow: white 5px 190px 0px;
+        }
+        .comment img {
+            text-align: left;
+            width: 32px;
+            vertical-align: bottom;
+        }
+        .comment-section {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: flex-end;
         }
     </style>
 </head>
@@ -131,6 +158,7 @@ background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%
         </table>
         <h1>click on today's date to waste electricity and time</h1>
     </div>
+
     <form action="#" id="stock-market" onsubmit="onGenerate();return false">
         <input type="number" name="sunday" id="sunday" class="stock-input" value="150">
         <input type="number" name="monday" id="monday" class="stock-input" value="200">
@@ -161,12 +189,28 @@ background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%
         <h3 class="chart-label">Sat</h3>
     </div>
     <h1>Blue is best day to buy, red is best day to sell</h1>
+
     <form action="#" onsubmit="onClick();return false">
         <input type="time" name="time" id="time">
         <input type="submit" value="submit" id="submit">
     </form>
     <h1 id="result">time</h1>
     <h1 id="current">this is the current time</h1>
+
+    <form action="#" onsubmit="onPrime();return false">
+        <input type="number" name="prime" id="prime" value="7">
+        <input type="submit" value="is it a prime ? whoa" id="prime-sunmit">
+    </form>
+    <h2 id="prime-result">check if that number is a prime</h2>
+
+    <form action="#" onsubmit="onComment();return false">
+        <input type="text" name="comment-username" id="username" value="@mike">
+        <textarea name="comment-body" id="comment-body" cols="20" rows="0">ive had it with all of you</textarea>
+        <input type="submit" value="comentrario aqui">
+    </form>
+
+    <div class="comment-section"></div>
+
     <img src="https://i.pinimg.com/originals/9f/9f/84/9f9f84cf1661937bb8cfcfee04dcef67.png" alt="zelda spritesheet" style="object-fit: none; object-position: 0% 0%; width: 100px; height: 150px;">
     <video src="catmeowslikeaperson.mp4" type="video/mp4" controls></video>
     <audio src="Monky Disco.mp3" type="audio/mp3" controls></audio>

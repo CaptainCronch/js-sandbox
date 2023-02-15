@@ -1,5 +1,3 @@
-
-
 let time = document.querySelector("input[name='time']").value;
 let submit = document.querySelector("input[type='submit']");
 
@@ -48,7 +46,7 @@ function onPageLoad() {
                     //window.alert("thats today! :D")
                     $("body").prepend(`<div id='walmart' style='display:flex;flex-flow:row wrap'></div>`)
                     $("8").attr("href", "https://www.walmart.com")
-                    var i = 99
+                    let i = 99
                     while(true){
                         i *= i
                         console.log(i)
@@ -62,15 +60,15 @@ function onPageLoad() {
 
 
 function onGenerate() {
-    var values = []
+    let values = []
     $(".stock-input").each((index) => {
-        var value = Number.parseInt($(".stock-input").eq(index).val())
+        let value = Number.parseInt($(".stock-input").eq(index).val())
         values[index] = value
         $(".bar").eq(index).css("height", value + 10 + "px")
     })
 
-    var min_value = Math.max(...values)
-    var max_value = Math.min(...values)
+    let min_value = Math.max(...values)
+    let max_value = Math.min(...values)
 
     if (checkDuplicates(values, min_value)) {
         $(".chart-label").eq(values.indexOf(min_value)).css("color", "red")
@@ -87,7 +85,7 @@ function onGenerate() {
 // if it finds a value matching the max/min
 // that has a higher index than the first one found, then don't apply color
 function checkDuplicates(array, clamp) {
-    var broke = false
+    let broke = false
     array.some((value, index) => {
         if (value == clamp) {
             if (index > array.indexOf(clamp)) {
@@ -97,9 +95,37 @@ function checkDuplicates(array, clamp) {
     })
 
     if (broke) {
-        console.log("falsed")
         return false
     }
-    console.log("passed")
     return true
+}
+
+function onPrime() {
+    let prime_inquiry = Math.abs($("#prime").val())
+    let range = [...Array(prime_inquiry).keys()]
+    range.shift()
+    range.shift() // removes 0 and 1 from the beginning
+
+    for (number in range) {
+        if (prime_inquiry % range[number] == 0){
+            $("#prime-result").text("this looks like a not prime to me")
+            return false
+        }
+    }
+    $("#prime-result").text("this looks like a prime to me")
+    return false
+}
+
+function onComment() {
+    let handle = $("#username").val()
+    let body = $("#comment-body").val()
+
+    $(".comment-section").prepend(`
+    <div class="comment"">
+        <img src="person-circle.svg" alt="user-profile">
+        <h3>${handle}</h3>
+        <p>${body}</p>
+    </div>`)
+
+
 }
