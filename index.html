@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <title>My Business</title>
     <style>
-        /* * {
-            user-select: none;
-            background: rgb(106,79,40);
-background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%, rgba(31,255,0,1) 100%);
-        } */
-        td { 
+        td {
             width: 20px;
             height: 20px;
             padding: 10px;
@@ -90,9 +85,42 @@ background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%
             justify-content: center;
             align-items: flex-end;
         }
+        .options-button {
+            position: relative;
+        }
+        .options-button:hover .dropdown{
+            display: inline-flex;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            flex-flow: column;
+            background-color: black;
+            color: white;
+            font-weight: 800;
+            font-size: 200%;
+            padding: 10px;
+            top: 20px;
+            right: 20px;
+            width: max-content;
+            border-radius: 10px;
+            z-index: 5;
+        }
+        .option {
+            padding-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .death, #gradient-toggle {
+            user-select: none;
+            background: rgb(106,79,40);
+            background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%, rgba(31,255,0,1) 100%);
+        }
     </style>
 </head>
 <body style="background-color: darkgray;">
+
+    <button id="gradient-toggle" style="position:fixed;width:100px;height:100px;font-size:2rem;" onclick="onDeath();return false">toggle unpleasant gradient</button>
 
     <div id="calendar" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
         <h1 id="calendar-title" style="font-size:5em;"></h1>
@@ -204,7 +232,7 @@ background: radial-gradient(circle, rgba(106,79,40,1) 17%, rgba(255,0,236,1) 54%
     <h2 id="prime-result">check if that number is a prime</h2>
 
     <form action="#" onsubmit="onComment();return false">
-        <input type="text" name="comment-username" id="username" value="@mike">
+        <input type="text" name="comment-username" id="username" value="mike">
         <textarea name="comment-body" id="comment-body" cols="20" rows="0">ive had it with all of you</textarea>
         <input type="submit" value="comentrario aqui">
     </form>

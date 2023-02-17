@@ -1,3 +1,8 @@
+
+function onDeath() {
+    $("*").toggleClass("death")
+}
+
 let time = document.querySelector("input[name='time']").value;
 let submit = document.querySelector("input[type='submit']");
 
@@ -116,16 +121,43 @@ function onPrime() {
     return false
 }
 
+let comment_number = 0
 function onComment() {
     let handle = $("#username").val()
     let body = $("#comment-body").val()
+    let time = new Date()
+    let comment_time = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + "." + time.getMilliseconds()
 
     $(".comment-section").prepend(`
-    <div class="comment"">
+    <div class="comment" id="comment-${comment_number}">
+        <button class="options-button">cog icon
+            <div class="dropdown">
+                <div class="option delete">delete</div>
+                <div class="option move-up">move up</div>
+                <div class="option move-down">move down</div>
+                <div class="time">${comment_time}</div>
+            </div>
+        </button>
         <img src="person-circle.svg" alt="user-profile">
-        <h3>${handle}</h3>
+        <h3>@${handle}</h3>
         <p>${body}</p>
     </div>`)
 
+    $(`#comment-${comment_number}`).children().find(".delete").on("click", function() {
+        $(this).parents(".comment").remove()
+    });
 
+    $(`#comment-${comment_number}`).children().find(".move-up").on("click", function() {
+        let stored_comment = $(this).parents(".comment").html() //only gets contents, fix this to return the entire element
+        let top_sibling = $(this).siblings(`#comment-${comment_number + 1}`)
+        $(this).parents(".comment").remove()
+        $(top_sibling).prepend(stored_comment)
+
+    });
+
+    $(`#comment-${comment_number}`).children().find(".move-down").on("click", function() {
+        
+    });
+
+    comment_number++
 }
