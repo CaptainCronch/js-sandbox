@@ -166,6 +166,21 @@ const API_key = "907b60d0367cd5b6747a6726e1b03ccb"
 const web_api_url = "https://www.api.openweathermap.org/data/2.5/weather?lat=40.39162&lon=-111.85077&appid=" + API_key + "&units=imperial"
 let api_result
 
-fetch(web_api_url, {mode: 'no-cors'})
+/*fetch(web_api_url, {mode: 'no-cors'})
 .then((x) => x.json())
-.then((y) => $("#temperature").text(toString(y.main.temp)))
+.then((y) => $("#temperature").text(toString(y.main.temp)))*/
+
+let timer = 0
+let timing = false
+let words = 0
+$(".counter textarea").on("keydown", function(event) {
+    if (event.key != " ") {return}
+    if (!timing) {
+        timing = true
+        setTimeout(function() {
+            $("#wpm").text(words*4)
+            timing = false
+        }, 15000)
+    }
+    words++
+})
