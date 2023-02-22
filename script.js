@@ -161,3 +161,11 @@ function onComment() {
 
     comment_number++
 }
+
+const API_key = "907b60d0367cd5b6747a6726e1b03ccb"
+const web_api_url = "https://www.api.openweathermap.org/data/2.5/weather?lat=40.39162&lon=-111.85077&appid=" + API_key + "&units=imperial"
+let api_result
+
+fetch(web_api_url, {mode: 'no-cors'})
+.then((x) => x.json())
+.then((y) => $("#temperature").text(toString(y.main.temp)))
