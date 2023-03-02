@@ -184,3 +184,90 @@ $(".counter textarea").on("keydown", function(event) {
     }
     words++
 })
+
+$("body").on("keyup", function(key) {
+    if (key.key == "Escape") {
+        $(".color-box").each(function() {
+            $(this).remove()
+        })
+        clearInterval(hold_id)
+        z_index = 0
+    }
+    if (key.key == "q") {
+        velocity[1] *= 1.2
+    }
+    if (key.key == "e") {
+        velocity[1] *= 0.8
+    }
+})
+
+let hold_id
+function onSolitaire() {
+    translation = [0, 0]
+    velocity = [0, 0]
+
+    if (isNaN(parseFloat($("#solitaire-speed").val()))) {
+        push_force = 15
+    } else {push_force = parseFloat($("#solitaire-speed").val())}
+
+    if (isNaN(parseFloat($("#solitaire-gravity").val()))) {
+        gravity = 5
+    } else {gravity = parseFloat($("#solitaire-gravity").val())}
+
+    hold_id = setInterval(hold_mouse, 10)
+}
+
+let z_index = 0
+let translation = [0, 0]
+let velocity = [0, 0]
+let gravity = 10
+let push_force = 15
+function hold_mouse(){
+    let color = "red"
+    switch (getRandomInt(0, 10)) {
+        case 0: color = "blue"; break;
+        case 1: color = "green"; break;
+        case 2: color = "yellow"; break;
+        case 3: color = "orange"; break;
+        case 4: color = "red"; break;
+        case 5: color = "purple"; break;
+        case 6: color = "indigo"; break;
+        case 7: color = "cyan"; break;
+        case 8: color = "magenta"; break;
+        case 9: color = "aquamarine"; break;
+        default: color = "chucknorris";
+    }
+    //let random_height = getRandomInt(0, window.innerHeight - 50)
+    //let random_width = getRandomInt(0, window.innerWidth - 50)
+
+    velocity[1] += gravity
+    velocity[0] = push_force
+    
+    translation[0] += velocity[0]
+    translation[1] += velocity[1]
+
+    if (translation[1] >= window.innerHeight - 50){
+        velocity[1] *= -1.05
+    }
+
+    if (translation[0] >= window.innerWidth - 50 || translation[0] <= 0){
+        push_force *= -1
+    }
+
+    $("#calendar").after(`<div class="color-box" style="height:50px;width:50px;background-color:${color};position:fixed;z-index:${z_index};top:${translation[1]}px;left:${translation[0]}px;"></div>`)
+    z_index ++
+
+    $("#position-x").text(Math.round(translation[0]))
+    $("#position-y").text(Math.round(translation[1]))
+    $("#velocity-x").text(Math.round(velocity[0]))
+    $("#velocity-y").text(Math.round(velocity[1]))
+    $("#squares").text(z_index)
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+} // The maximum is exclusive and the minimum is inclusive
+
+
