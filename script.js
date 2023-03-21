@@ -162,13 +162,12 @@ function onComment() {
     comment_number++
 }
 
-const API_key = "907b60d0367cd5b6747a6726e1b03ccb"
-const web_api_url = "https://www.api.openweathermap.org/data/2.5/weather?lat=40.39162&lon=-111.85077&appid=" + API_key + "&units=imperial"
+const web_api_url = "https://api.open-meteo.com/v1/forecast?latitude=40.39&longitude=-111.85&hourly=temperature_2m&temperature_unit=fahrenheit&forecast_days=1&timezone=auto"
 let api_result
 
-/*fetch(web_api_url, {mode: 'no-cors'})
+fetch(web_api_url)
 .then((x) => x.json())
-.then((y) => $("#temperature").text(toString(y.main.temp)))*/
+.then((y) => $("#temperature").text(Math.floor(y.hourly.temperature_2m[0] + 459.67)))
 
 let timer = 0
 let timing = false
