@@ -51,6 +51,22 @@
             align-items: flex-end;
             padding: 20px 100px;
         }
+        #calendar {
+            perspective: 100em;
+        }
+        #calendar-body {
+            transform: rotateX(0deg);
+        }
+        #calendar-body:focus {
+            animation: spin 1s 1;
+        }
+        #calendar-body:active {
+            animation: none;
+        }
+        @keyframes spin {
+            from {transform: rotateX(0deg);}
+            to {transform: rotateX(360deg);}
+        }
         .bar {
             background-color: greenyellow;
             width: 50px;
@@ -124,13 +140,20 @@
         .color-box:hover {
             transform: rotateY(180deg);
         }
+        .hud {
+            z-index: 2;
+
+            p {
+                text-shadow: #FFF 5px 0 5px, #FFF -5px 0 5px, #FFF 0 0 1px;
+            }
+        }
     </style>
 </head>
 <body style="background-color: darkgray;">
 
-    <button id="gradient-toggle" style="position:fixed;width:100px;height:100px;font-size:2rem;" onclick="onDeath();return false">toggle unpleasant gradient</button>
-    <button id="solitaire" style="position:fixed;width:100px;height:100px;font-size:1.5rem;right:0px;text-align:right;margin-right:10px;" onclick="onSolitaire();return false">play solitaire animation (press escape to clear) (press q to boost and e to brake)</button>
-    <form action="#" style="position:fixed;right:100px;z-index:5000">
+    <button class="hud" id="gradient-toggle" style="position:fixed;width:100px;height:100px;font-size:2rem;" onclick="onDeath();return false">toggle unpleasant gradient</button>
+    <button class="hud" id="solitaire" style="position:fixed;width:100px;height:100px;font-size:1.5rem;right:0px;text-align:right;margin-right:10px;" onclick="onSolitaire();return false">play solitaire animation (press escape to clear) (press q to boost and e to brake)</button>
+    <form class="hud" id="solitaire-form" action="#" style="position:fixed;right:100px;z-index:5000">
         <input type="text" name="solitaire" id="solitaire-speed" placeholder="horizontal speed">
         <input type="text" name="solitaire" id="solitaire-gravity" placeholder="gravity">
         <p>position: <span id="position-x">0</span>px, <span id="position-y">0</span>px</p>
@@ -140,7 +163,7 @@
 
     <div id="calendar" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
         <h1 id="calendar-title" style="font-size:5em;"></h1>
-        <table>
+        <table id="calendar-body" tabindex="-1">
             <thead>
                 <tr>
                     <th>Sun</th>
